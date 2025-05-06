@@ -1,0 +1,706 @@
+* {
+    box-sizing: border-box;
+}
+
+::selection {
+    color: white;
+    background-color: #582d83;
+}
+
+.dark-theme {
+    background-color: #09070b;
+    color: #582d83;
+    font-family: Arial, Tahoma, sans-serif;
+    ::selection {
+        background-color: #582d83;
+    }
+    footer {
+        border-top: 6px solid #140b19;
+        color: #2b1c3c;
+    }
+    header {
+        background-color: rgba(20, 11, 25, 0.9);
+        border-bottom: 6px solid rgba(88, 45, 131, 0.3);
+        box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 0.3);
+    }
+    header nav *:hover {
+        filter: brightness(1.25);
+    }
+    header nav {
+        color: #582d83;
+    }
+    .slider {
+        background-color: #140b19;
+        border: 3px solid #3b2057;
+    }
+    .circle {
+        background-color: #582d83;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #panel {
+        box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 1);
+    }
+    #panel #search input {
+        color: #582d83;
+    }
+    #search {
+        border: 6px solid #140b19;
+        background-color: #060507;
+    }
+    #search:hover {
+        border: 5px solid #321b49;
+    }
+    #search:focus-within {
+        border: 5px solid #251633;
+    }
+    #searchButton, #reduceButton, #showNearestPlanet, .button {
+        background-color: #582d83;
+    }
+    #searchInput::placeholder {
+        color: #2c1840;
+    }
+    #searchInput:hover::placeholder {
+        color: #3b2057;
+    }
+
+    .button {
+        box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 1);
+        color: #140b19;
+    }
+    .button:hover {
+        color: white;
+        filter: brightness(1.25);
+    }
+
+    .cards-deck {
+        border-right: 6px solid #140b19;
+    }
+    .cards-deck:hover .card {
+        filter: brightness(1.5);
+    }
+    .cards-deck:hover .opened-card {
+        filter: brightness(1);
+    }
+    .card, .planet-card {
+        background: linear-gradient(70deg, #22142b 0%, #140b19 70%);
+    }
+    .planet-card {
+        outline: 6px solid #140b19;
+    }
+    .planet-card:hover:active {
+        filter: none;
+    }
+    .card {
+         outline: 6px solid #140b19;
+         box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 1);
+     }
+
+    @media (min-width: 680px) {
+        .card-space.card {
+            outline: rgba(20, 11, 25, 0.86) solid 8px;
+        }
+        .cards-deck:hover .card-space {
+            scale: 1;
+            filter: brightness(1);
+        }
+    }
+    @media (max-width: 680px) {
+        .cards-deck:hover .card-space {
+            scale: 1;
+            filter: brightness(1);
+        }
+        .card-space {
+            outline: rgba(20, 11, 25, 0.86) solid 8px;
+        }
+        .planet-container {
+            border-top: 6px solid #140b19;
+        }
+        .planet-card {
+            outline: 6px solid #140b19;
+            box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 1);
+        }
+    }
+    .planet-container {
+        border-top: 6px solid #140b19;
+    }
+    .planet-card:hover {
+        filter: brightness(1.5);
+    }
+    .planet-name {
+        color: #582d83;
+    }
+    .planet-information {
+        color: #582d83;
+    }
+    .reduced-card-title {
+        color: #582d83;
+    }
+}
+
+body {
+    background-color: #e2cff4;
+    color: #22142b;
+    opacity: 0;
+    transition: opacity 2s, background-color 2s;
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+body * {
+    transition: opacity 2s;
+}
+
+.transition * {
+    opacity: 0;
+}
+
+header {
+    background-color: rgba(226, 207, 244, 0.6);
+    padding: 20px;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: 1000;
+    align-items: center;
+    border-bottom: 6px solid rgba(53, 34, 66, 0.6);
+    box-shadow: 0 20px 26px 0 rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+    user-select: none;
+}
+
+header nav * {
+    transition: filter 500ms ease-in-out, transform 500ms ease-in-out, opacity 2s;
+}
+
+header nav *:hover {
+    filter: brightness(1.25);
+    transform: scale(1.025);
+}
+
+header nav h2 {
+    position: fixed;
+    top: 0;
+    margin-left: 6%;
+    font-size: 24px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(53, 34, 66, 0.9);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c0a6dd;
+    transition: 0.4s;
+    border-radius: 24px;
+    border: 3px solid rgba(53, 34, 66, 0.6);
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.circle {
+    height: 18px;
+    width: 18px;
+    background-color: rgba(53, 34, 66, 0.6);
+    border-radius: 50%;
+    transition: 0.4s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider .circle {
+    transform: translateX(26px);
+}
+
+#panel {
+    display: flex;
+    height: 70px;
+    margin-bottom: 40px;
+    column-gap: 20px;
+}
+
+#panel #search input {
+    background: none;
+    width: 100%;
+    height: 70px;
+    outline: none;
+    color: #352242;
+    border: none;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+}
+
+#search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 6px solid #6e4a91;
+    border-radius: 15px;
+    background-color: #c0a6dd;
+    width: 100%;
+    max-width: 60%;
+    transition: border 300ms ease-in-out, opacity 2s;
+    box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 0.35);
+}
+
+#search:hover {
+    border: 5px solid #22142b;
+}
+
+#search:focus-within {
+    border: 5px solid #352242;
+    border-radius: 15px;
+}
+
+#searchButton {
+    background-color: #22142b;
+    border: none;
+    width: 50px; height: 40px;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    box-shadow: 0 0;
+}
+
+#reduceButton {
+    background-color: #22142b;
+    border: none;
+    width: 50px; height: 40px;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    box-shadow: 0 0;
+}
+
+#showNearestPlanet {
+    background-color: #22142b;
+    border: none;
+    width: 354px;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    z-index: 2;
+    cursor: pointer;
+}
+
+@media (max-width: 1030px) {
+    #quotesPanel {
+        position: absolute;
+        left: 740px; top: 100px;
+        width: 20%; height: 420px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        column-gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1030px) {
+    #quotesPanel {
+        position: absolute;
+        left: 740px; top: 100px;
+        width: 36%; height: 420px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        column-gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 740px) {
+    #quotesPanel {
+        position: relative;
+        left: 0; top: 0;
+        width: 100%; height: 260px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+        column-gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+#quotesPanel h2 {
+    position: relative;
+    top: -40px;
+    font-size: 26px;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 0 15px 16px rgba(0, 0, 0, 0.3);
+}
+
+#quoteField {
+    position: relative;
+    bottom: 60px;
+    font-size: 26px;
+    font-weight: bolder;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    text-shadow: 0 15px 16px rgba(0, 0, 0, 0.3);
+}
+
+#quoteField.quote-spawn {
+    opacity: 0;
+    transform: rotateY(60deg);
+}
+
+#showQuote {
+    position: absolute;
+    bottom: 0;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    z-index: 2;
+    cursor: pointer;
+    height: 50px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+#filterButton {
+    font-size: 20px;
+}
+
+#showButton {
+    font-size: 20px;
+}
+
+#searchInput::placeholder {
+    color: #4c365c;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+    transition: font-size 300ms ease-in-out, color 300ms ease-in-out;
+    user-select: none;
+}
+
+#searchInput:hover::placeholder {
+    color: #352242;
+    font-weight: bold;
+    font-size: 23px;
+    text-align: center;
+}
+
+.button {
+    transition: filter 200ms linear, scale 200ms linear, color 200ms linear, opacity 2s;
+    background-color: #22142b;
+    border: none;
+    width: 75px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 0.35);
+    color: #9a76bd;
+    user-select: none;
+}
+
+.button:hover {
+    scale: 1.025;
+    filter: brightness(0.75);
+    color: white;
+}
+
+.button:active {
+    scale: 0.9;
+}
+
+.cards-deck {
+    width: 360px; height: 460px;
+    border-right: 6px solid rgb(216, 183, 234);
+    margin-bottom: 40px;
+}
+
+.cards-deck:hover .card {
+    scale: 1.05;
+    filter: brightness(0.75);
+}
+
+.card {
+    background: linear-gradient(70deg, #352242 0%, #46375a 70%);
+    width: 220px; height: 320px;
+    position: relative;
+    top: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: 6px solid #352242;
+    outline-offset: 5px;
+    transform-style: preserve-3d;
+    user-select: none;
+    box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 0.35);
+    margin: 60px;
+    display: flex; justify-content: center;
+    transition: opacity 2s;
+}
+
+.cards-deck:hover .opened-card {
+    scale: 1;
+    filter: brightness(1);
+}
+
+.functional-card {
+    position: absolute;
+    left: 8px;
+    z-index: 1;
+    transition: opacity 1s, scale 900ms ease-in-out, filter ease-out 1600ms, left ease-in-out 1s, top ease-in-out 1s, transform ease-in-out 1s
+}
+
+@media (min-width: 680px) {
+    .opened-card {
+        position: absolute;
+        left: 380px;
+        transform: rotateY(360deg);
+    }
+    .card-space.card {
+        position: absolute;
+        left: 380px;
+        background: transparent;
+        outline: solid 8px rgba(53, 34, 66, 0.6);
+        outline-offset: -5px;
+        box-shadow: 0 0;
+    }
+    .cards-deck:hover .card-space {
+        scale: 1;
+        filter: brightness(1);
+    }
+    #addPlanet {
+        position: absolute;
+        left: 410px; top: 470px;
+        border: none;
+        width: 282px;
+        height: 50px;
+        border-radius: 15px;
+        font-weight: bolder;
+        font-size: 20px;
+        text-align: center;
+        z-index: 2;
+        cursor: pointer;
+    }
+}
+
+.nearest-card h2, .nearest-card img {
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+
+.opened-card h2, .opened-card img {
+    opacity: 1;
+}
+
+@media (max-width: 680px) {
+    .opened-card {
+        position: absolute;
+        top: 520px;
+        transform: rotateY(360deg);
+    }
+    .cards-deck {
+        margin-bottom: 440px;
+    }
+    .card-space {
+        position: absolute;
+        top: 520px;
+        background: transparent;
+        outline: solid 8px rgba(53, 34, 66, 0.6);
+        outline-offset: -5px;
+        box-shadow: 0 0;
+    }
+    .cards-deck:hover .card-space {
+        scale: 1;
+        filter: brightness(1);
+    }
+    #addPlanet {
+        position: relative;
+        left: 11.5%; top: 0px;
+        border: none;
+        width: 282px;
+        height: 50px;
+        border-radius: 15px;
+        font-weight: bolder;
+        font-size: 20px;
+        text-align: center;
+        z-index: 2;
+        cursor: pointer;
+        margin-bottom: 40px;
+    }
+}
+
+.planet-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 50px;
+    width: 100%;
+    border-top: 6px solid rgb(216, 183, 234);
+}
+
+.planet-card {
+    background: linear-gradient(70deg, #352242 0%, #46375a 70%);
+    width: 220px; height: 320px;
+    position: relative;
+    top: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: 6px solid #352242;
+    outline-offset: 5px;
+    transition: transform ease-out 300ms, filter ease-out 260ms, top ease-out 1s, left ease-out 1s, opacity ease-out 1s;
+    transform-style: preserve-3d;
+    user-select: none;
+    box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 0.35);
+    opacity: 1;
+}
+
+.planet-spawn-position {
+    position: relative;
+    top: -360px;
+    transform: rotateY(-360deg);
+    opacity: 0;
+}
+
+.planet-card:hover {
+    top: 55px;
+    transform: rotate3d(-1, 2, 0, 30deg); scale(1.05);
+    filter: brightness(0.75);
+}
+
+.planet-card:active {
+    top: 55px;
+    transform: rotate3d(0, 1, 0, 180deg); scale(1.1);
+}
+
+.planet-card:hover:active {
+    filter: none;
+}
+
+.planet-card-front, .planet-card-back {
+    display: flex;
+    justify-content: center;
+    width: 220px;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.planet-card-back {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    transform: rotateY(180deg);
+}
+
+.planet-card-front {
+    text-align: center;
+    width: 100%;
+}
+
+img {
+    width: 150px; height: 150px;
+    position: absolute;
+    top: 8%; left: 18%;
+    pointer-events: none;
+}
+
+.planet-name {
+    position: relative;
+    top: 65%;
+    font-size: 28px;
+    color: #b097ca;
+}
+
+.planet-information {
+    position: relative;
+    bottom: 101%;
+    font-size: 22px;
+    font-weight: bold;
+    color: #b097ca;
+    opacity: 0;
+    transition: opacity 400ms linear;
+    width: 90%;
+    max-height: 100%;
+    line-height: 28px;
+    overflow: hidden;
+}
+
+.planet-card:active .planet-information {
+    opacity: 1;
+}
+
+.reduced-card-title {
+    font-size: 160px;
+    text-align: center;
+    position: relative;
+    top: -80px;
+    color: #b097ca;
+}
+
+footer {
+    width: 100%; height: 80px;
+    margin-top: 120px;
+    z-index: 3;
+    border-top: 6px solid rgb(216, 183, 234);
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 10px;
+    color: #2b1c3c;
+    transition: margin-top 0.5s ease-in-out, opacity 2s;
+}
+footer div {
+    align-items: center;
+}
+div ul {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-content: space-around;
+    list-style: none;
+}
+
+a {
+    color: #3b2057;
+    transition: filter 0.5s, color 0.5s, transform 0.5s, opacity 2s;
+    text-decoration: none;
+}
+a:hover {
+    color: #582d83;
+    transform: scale(1.05);
+}
+a:active {
+    filter: brightness(0.8);
+    transform: scale(0.95);
+}
+
+
+.nv {
+    opacity: 0;
+}

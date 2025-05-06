@@ -1,0 +1,284 @@
+.background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+img {
+    z-index: -2;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 2s ease-in-out;
+}
+
+.background .overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.window-active img {
+    filter: blur(2px);
+}
+
+body {
+    background-color: rgb(4, 13, 20);
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+}
+
+.window {
+    z-index: 4;
+    display: flex;
+    position: fixed;
+    left: 15%; top: 100%;
+    width: 70%; height: 0%;
+    border-radius: 40px;
+    background-color: rgba(0, 0, 0, 1);
+    transition: height 1s ease-in-out, top 1s ease-in-out;
+}
+
+.window-active .overlay .window {
+    left: 15%; top: 40%;
+    width: 70%; height: 65%;
+    transition: height 1s ease-in-out, top 1s ease-in-out;
+}
+
+.window-active .overlay .window div {
+    opacity: 1;
+    transition: opacity 1500ms ease-in-out;
+}
+
+.window div {
+    opacity: 0;
+    transition: opacity 1500ms ease-in-out;
+}
+
+.window-active .overlay h1 {
+    position: fixed;
+    align-content: center;
+    left: 29.1%; top: 10%;
+    transition: top 1s ease-in-out;
+}
+
+.window-active .overlay h2 {
+    top: 26%;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out, top 1s ease-in-out;
+}
+
+.scene-transition {
+    z-index: 5;
+    width: 20%; height: 40px;
+    color: rgb(0, 55, 60);
+    font-size: 24px;
+    font-weight: 550;
+    border-radius: 30px;
+    border: none;
+    background-color: black;
+    margin: 2px;
+    cursor: pointer;
+    outline: 3px solid rgb(0, 55, 60);
+    outline-offset: 5px;
+    position: fixed;
+    left: 40%; top: 340px;
+    transition: color 500ms ease-in-out, transform 250ms ease-in-out, margin 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out, width 1s ease-in-out, outline 1s ease-in-out, outline-offset 1s ease-in-out;
+
+}
+
+.window-active .overlay .scene-transition {
+    top: 200px;
+    width: 60%;
+    left: 20%;
+    margin: 0px;
+    outline-offset: 0px;
+}
+
+.window-active .overlay .scene-transition:active {
+    top: 200px;
+    width: 50%;
+    left: 25%;
+    margin: 0px;
+    outline-offset: 0px;
+}
+
+.scene-transition:active {
+    width: 15%;
+    left: 42.5%;
+    transform: scale(0.95);
+    transition: width 250ms ease-in-out, left 250ms ease-in-out;
+}
+
+.scene-transition-transition {
+    color: black
+}
+
+h1 {
+    position: fixed;
+    align-content: center;
+    left: 29.1%; top: 20%;
+    transition: top 1s ease-in-out;
+    color: rgb(0, 0, 0);
+    text-shadow: -2px -2px 0 rgb(0, 55, 60), 2px -2px 0 rgb(0, 55, 60), -2px  2px 0 rgb(0, 55, 60), 2px  2px 0 rgb(0, 55, 60);
+}
+
+h2 {
+    position: fixed;
+    align-content: center;
+    left: 23.1%; top: 36%;
+    transition: opacity 500ms ease-in-out, top 1s ease-in-out;
+    color: rgb(0, 0, 0);
+    text-shadow: -2px -2px 0 rgb(0, 55, 60), 2px -2px 0 rgb(0, 55, 60), -2px  2px 0 rgb(0, 55, 60), 2px  2px 0 rgb(0, 55, 60);
+    opacity: 1;
+}
+
+.addquote-button {
+    width: 22%; height: 60px;
+    color: black;
+    font-size: 24px;
+    font-weight: 550;
+    border-radius: 30px;
+    border: none;
+    background-color: rgb(0, 55, 60);
+    margin: 2px;
+    cursor: pointer;
+    outline: 3px solid rgb(0, 55, 60);;
+    outline-offset: 5px;
+    position: absolute;
+    left: 5%; top: 240px;
+    transition: transform 250ms ease-in-out, top 500ms ease-in-out, outline 500ms ease-in-out, outline-offset 500ms ease-in-out, background-color 500ms ease-in-out;
+}
+
+.addquote-button:hover {
+    background-color: rgb(0, 74, 81);
+    outline: 0px solid rgb(0, 55, 60);;
+    outline-offset: 0px;
+    top: 236px;
+}
+
+.addquote-button:active {
+    transform: scale(0.95);
+}
+
+.quotes-button {
+    width: 30%; height: 40px;
+    color: black;
+    font-size: 24px;
+    font-weight: 550;
+    border-radius: 30px;
+    border: none;
+    background-color: rgb(0, 55, 60);
+    margin: 2px;
+    cursor: pointer;
+    outline: 3px solid rgb(0, 55, 60);;
+    outline-offset: 5px;
+    position: absolute;
+    top: 170px;
+    transition: left 250ms ease-in-out, right 250ms ease-in-out, width 250ms ease-in-out, transform 250ms ease-in-out, top 500ms ease-in-out, outline 500ms ease-in-out, outline-offset 500ms ease-in-out, background-color 500ms ease-in-out;
+}
+
+.quotes-button:hover {
+    width: 40%;
+    background-color: rgb(0, 74, 81);
+    outline: 0px solid rgb(0, 55, 60);;
+    outline-offset: 0px;
+    top: 166px;
+}
+
+.quotes-button:active {
+    transform: scale(0.95);
+}
+
+.deletequotes-button {
+    right: 15%;
+}
+
+.deletequotes-button:hover {
+    right: 10%;
+}
+
+.showquote-button {
+    left: 15%;
+}
+
+.showquote-button:hover {
+    left: 10%;
+}
+
+.inputquote {
+    width: 41%; height: 60px;
+    font-weight: 550;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 30px;
+    border: none;
+    background-color: black;
+    color: rgb(2, 79, 87);
+    margin: 2px;
+    outline: 3px solid rgb(0, 55, 60);
+    outline-offset: 2px;
+    position: absolute;
+    left: 30%; top: 240px;
+    transition: top 500ms ease-in-out, outline 500ms ease-in-out, outline-offset 500ms ease-in-out, background-color 500ms ease-in-out;
+}
+
+.inputquote::placeholder {
+    color: rgb(0, 69, 76);
+}
+
+.inputquote:hover {
+    outline-offset: 3px;
+    outline: 4px solid rgb(0, 55, 60);
+    top: 236px;
+}
+
+.inputauthor {
+    width: 20%; height: 60px;
+    font-size: 24px;
+    font-weight: 550;
+    text-align: center;
+    border-radius: 30px;
+    border: none;
+    background-color: black;
+    color: rgb(2, 79, 87);
+    margin: 2px;
+    outline: 3px solid rgb(0, 55, 60);;
+    outline-offset: 2px;
+    position: absolute;
+    left: 74%; top: 240px;
+    transition: top 500ms ease-in-out, outline 500ms ease-in-out, outline-offset 500ms ease-in-out, background-color 500ms ease-in-out;
+}
+
+.inputauthor:hover {
+    outline-offset: 3px;
+    outline: 4px solid rgb(0, 55, 60);
+    top: 236px;
+}
+
+.inputauthor::placeholder {
+    color: rgb(0, 69, 76);
+}
+
+.quote-display {
+    width: 90%; height: 100px;
+    font-weight: 550;
+    font-size: 24px;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(2, 79, 87);
+    position: absolute;
+    left: 5%; top: 40px;
+    transition: top 500ms ease-in-out, opacity 5s ease-in-out, outline 500ms ease-in-out, outline-offset 500ms ease-in-out, background-color 500ms ease-in-out;
+}
+
+.non-select {
+    user-select: none;
+}

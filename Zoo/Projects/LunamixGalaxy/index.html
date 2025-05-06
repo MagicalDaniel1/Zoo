@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunamix Interactive Galaxy</title>
+    <link id="styleLink" rel="stylesheet" href="./styles/index.css"><link rel="preconnect">
+    <script src="https://kit.fontawesome.com/ffb2eb8222.js" crossorigin="anonymous"></script>
+    <script src="./scripts/index.js"></script>
+</head>
+<body class="dark-theme">
+<header>
+    <nav>
+        <label id="switchTheme" class="switch">
+            <input type="checkbox" onclick="changeTheme()">
+            <span class="slider">
+                <span class="circle"></span>
+            </span>
+        </label>
+        <h2>lunamix galaxy</h2>
+    </nav>
+</header>
+<main>
+    <div class="planet-panel">
+        <div id="cardsDeck" class="cards-deck" onclick="showNearestPlanet()">
+            <div id="nearest-card" class="card nearest-card functional-card">
+                <img id="nearestPlanetImage" src="./materials/planet.png" alt="planet">
+                <h2 id="nearestPlanetName" class="planet-name">Планета</h2>
+            </div>
+            <div class="card" style="transition: scale 900ms ease-in-out, filter ease-out 1600ms"></div>
+            <div class="card" style="position: absolute; top: 14%; z-index: -1; transition: scale 600ms ease-in-out, filter ease-out 1s"></div>
+            <div class="card" style="position: absolute; top: 17%; z-index: -2; transition: scale 300ms ease-in-out, filter ease-out 300ms"></div>
+            <div class="card card-space"></div>
+        </div>
+        <div id="quotesPanel">
+            <h2>Космические цитаты:</h2>
+            <p id="quoteField"></p>
+            <button id="showQuote" class="button" onclick="showQuote()">Явить цитату</button>
+        </div>
+        <button id="addPlanet" class="button" onclick="addPlanet()">Добавить планету</button>
+        <div id="panel">
+            <button id="showNearestPlanet" class="button" onclick="showNearestPlanet()">Ближайшая планета</button>
+            <div id="search">
+                <input type="text" id="searchInput" placeholder="Поиск по названию">
+                <button id="reduceButton" class="button" onclick="reducePlanets()">
+                    <i class="fa-solid fa-arrow-up-9-1"></i>
+                </button>
+                <button id="searchButton" class="button" onclick="findPlanet()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button id="filterButton" class="button" onclick="filterBigPlanets()">
+                <i id="filter" class="fa-solid fa-filter-circle-xmark"></i>
+            </button>
+            <button id="showButton" class="button" onclick="showPlanets()">
+                <i class="fa-solid fa-play"></i>
+            </button>
+        </div>
+    </div>
+    <div id="planetContainer" class="planet-container"><p></p></div>
+</main>
+<footer>
+    <div>
+        <ul>
+            <li>Связаться со мной:</li>
+            <li><i class="fa-brands fa-discord"></i> @danterlie</li>
+            <li><i class="fa-brands fa-whatsapp"></i> +38 099 063 5818</li>
+            <li><i class="fa-brands fa-telegram"></i> +38 099 063 5818</li>
+            <li>Реклама:</li>
+            <a href=""><i class="fa-solid fa-rocket"></i></i> lunamix galaxy</a>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>

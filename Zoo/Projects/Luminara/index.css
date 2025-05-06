@@ -1,0 +1,101 @@
+.montserrat-uniquifier {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #0A0F25;
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+header {
+    box-shadow: 0 7px 6px rgba(0, 0, 0, 0.4);
+    font-family: "Montserrat", sans-serif;
+    background-color: #6c23af;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding-left: 17px;
+    padding-right: 17px;
+    margin: 0;
+    border-bottom: 4px solid #4a107a;
+    user-select: none;
+}
+
+
+
+button{
+    background-color: #007BFF;
+    color: #FFFFFF ;
+    box-shadow: 0 7px 6px rgba(0, 0, 0, 0.2);
+    border: transparent;
+    border-radius: 5px;
+    width: auto; height: 35px;
+    font-size: 15px; font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+button:hover{
+    background-color: #005FCC;
+}
+
+#filterPlanets {
+    font-size: 25px;
+    align-content: center;
+}
+
+main{
+    margin-top: 100px;
+}
+
+.planetContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+}
+
+.planet {
+    text-align: center;
+    background-color: #005FCC;
+    color: #FFFFFF;
+    border: 1px solid rgba(0, 95, 204, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+    padding: 40px;
+    width: 22%;
+    height: 260px;
+    margin: 10px;
+}
+
+.planet img {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.planet h3 {
+    font-size: 18px;
+    color: #032F30;
+    margin: 15px 0 10px;
+}
+
+.planet p {
+    font-size: 14px;
+    color: #0A7075;
+    margin-bottom: 15px;
+    word-break: break-all;
+}
+
+
+body.theme {
+    background-color: #F5F9FF;
+}

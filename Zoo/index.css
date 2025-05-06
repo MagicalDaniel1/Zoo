@@ -1,0 +1,148 @@
+body {
+    perspective: 3400px;
+    user-select: none;
+    background-color: white;
+    font-family: arial, sans-serif;
+    font-size: 22px;
+    color: #71a637;
+}
+.garden {
+    background-image: url("./garden.png");
+    background-color: #171717;
+    width: 85%;
+    height: 460px;
+    margin: 5%;
+    border-radius: 15px;
+}
+.insect-jar-box {
+    display: flex;
+    background-color: white;
+    border-top: 10px solid #a1e15d;
+    border-bottom: 10px solid #a1e15d;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.jar-card {
+    background-color: white;
+    border: 7px solid #a1e15d;
+    border-radius: 25px;
+    box-shadow: 1px 5px 10px #858585;
+    margin: 2%;
+    width: 28%;
+    height: 580px;
+    transition: transform 0.5s ease-in-out;
+    align-items: flex-start;
+}
+.jar-card:hover {
+    transform: scale(1.03);
+}
+.jar-card h2, .jar-card p {
+    text-align: center;
+    position: relative;
+}
+.jar-card h2 {
+    top: 40px;
+}
+.jar-card p {
+    font-weight: bold;
+    top: 40px;
+
+}
+.jar-card button {
+    background-color: #71a637;
+    color: #202e13;
+    position: relative;
+    top: -60px;
+    width: 24%;
+    height: 60px;
+    margin: 4%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    transition: filter 1s ease-in-out, transform 0.5s ease-in-out;
+}
+.jar-card button:hover, .button:hover {
+    transform: scale(1.05);
+    filter: brightness(140%);
+}
+.jar {
+    position: relative;
+    left: 21%;
+    top: 8%;
+    height: 240px;
+    z-index: 2;
+}
+.wing-1, .wing-2, .butterfly, .insect-in-jar {
+    width: 120px;
+    height: 120px;
+    perspective: 10000px;
+    transform-style: preserve-3d;
+}
+.wing-1 {
+    animation: wing1 280ms linear infinite;
+    filter: brightness(80%);
+    position: absolute;
+    top: 0;
+}
+.wing-2 {
+    animation: wing2 280ms linear infinite;
+    position: absolute;
+    top: 0;
+}
+.wing-1, .wing-2 {
+    background-color: transparent;
+    -webkit-user-drag: none;
+}
+.butterfly, .insect-in-jar {
+    position: absolute;
+    left: 1500px;
+    top: 500px;
+    transition: left 3s ease-out, top 3s ease-out, transform 700ms ease-out;
+    transform: rotate3d(0, 0, 1, -25deg) rotate3d(0, 1, 0, 35deg);
+}
+.insect-in-jar {
+    position: relative;
+    left: 30%;
+    top: -50%;
+    z-index: 1;
+}
+.non-buttfly {
+    width: 240px;
+    height: 100px;
+    left: 15%;
+}
+.button {
+    background-color: #a1e15d;
+    border-radius: 15px;
+    border: none;
+    width: 40%;
+    height: 60px;
+    margin-inline: 4%;
+    margin-bottom: 40px;
+    color: #202e13;
+    font-weight: bold;
+    font-size: 22px;
+    transition: filter 1s ease-in-out, transform 0.5s ease-in-out;
+}
+@keyframes wing1 {
+    0% {
+        transform: rotate3d(0, 1, 0, 10deg);
+    }
+    50% {
+        transform: rotate3d(0, 1, 0, 90deg);
+    }
+    100% {
+        transform: rotate3d(0, 1, 0, 10deg);
+    }
+}
+@keyframes wing2 {
+    0% {
+        transform: rotate3d(0, 1, 0, -10deg);
+    }
+    50% {
+        transform: rotate3d(0, 1, 0, -90deg);
+    }
+    100% {
+        transform: rotate3d(0, 1, 0, -10deg);
+    }
+}
